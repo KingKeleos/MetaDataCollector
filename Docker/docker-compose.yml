@@ -1,0 +1,15 @@
+services:
+  fetcher:
+    build: ../.
+    ports:
+    - 4200:4200
+  prometheus:
+    image: prom/prometheus:latest
+    ports:
+    - 9090:9090
+    volumes:
+    - ../prometheus:/etc/prometheus
+    command: --web.enable-lifecycle  --config.file=/etc/prometheus/prometheus.yml
+
+volumes:
+  prometheus-data:
